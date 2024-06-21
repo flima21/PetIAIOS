@@ -21,6 +21,7 @@
 		DB451E7B2C24F0B600D84527 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DB451E7E2C24F0B600D84527 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		DB451E882C24F38F00D84527 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		DB7D67412C25C6BF00594BF7 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +38,7 @@
 		DB451E6B2C24F0B500D84527 = {
 			isa = PBXGroup;
 			children = (
+				DB7D67412C25C6BF00594BF7 /* README.md */,
 				DB451E762C24F0B500D84527 /* PetIAIOS */,
 				DB451E752C24F0B500D84527 /* Products */,
 			);
