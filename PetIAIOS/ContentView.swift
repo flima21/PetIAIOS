@@ -9,7 +9,14 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {}
+        VStack {
+            Circle()
+                .fill(.green)
+                .padding()
+                .overlay(Image(systemName: "figure").font(.system(size: 150)).foregroundColor(.white))
+            
+            Text("PET IA").font(.system(size: 20)).bold()
+        }
         .padding()
     }
 }
