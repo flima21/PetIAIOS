@@ -12,6 +12,8 @@
 		DB451E7C2C24F0B600D84527 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB451E7B2C24F0B600D84527 /* Assets.xcassets */; };
 		DB451E7F2C24F0B600D84527 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB451E7E2C24F0B600D84527 /* Preview Assets.xcassets */; };
 		DB451E892C24F38F00D84527 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB451E882C24F38F00D84527 /* LoginView.swift */; };
+		DB7D67432C2651C100594BF7 /* ResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7D67422C2651C100594BF7 /* ResetPasswordView.swift */; };
+		DB7D67452C2651DF00594BF7 /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7D67442C2651DF00594BF7 /* SignupView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		DB451E7E2C24F0B600D84527 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		DB451E882C24F38F00D84527 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		DB7D67412C25C6BF00594BF7 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		DB7D67422C2651C100594BF7 /* ResetPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordView.swift; sourceTree = "<group>"; };
+		DB7D67442C2651DF00594BF7 /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +89,8 @@
 			isa = PBXGroup;
 			children = (
 				DB451E882C24F38F00D84527 /* LoginView.swift */,
+				DB7D67422C2651C100594BF7 /* ResetPasswordView.swift */,
+				DB7D67442C2651DF00594BF7 /* SignupView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -169,6 +175,8 @@
 				DB451E892C24F38F00D84527 /* LoginView.swift in Sources */,
 				DB451E7A2C24F0B500D84527 /* ContentView.swift in Sources */,
 				DB451E782C24F0B500D84527 /* PetIAIOSApp.swift in Sources */,
+				DB7D67432C2651C100594BF7 /* ResetPasswordView.swift in Sources */,
+				DB7D67452C2651DF00594BF7 /* SignupView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
