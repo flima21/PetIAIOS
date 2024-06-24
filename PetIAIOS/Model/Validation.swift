@@ -11,9 +11,17 @@ class Validation {
     
     init() { }
     
-    public func cpf(document: String) -> Bool {
+    public func cpf(_ document: String) -> Bool {
+        let numbers = document.compactMap { Int(String($0)) }
+        guard numbers.count == 11 else { return false }
         
-        return true
+        let sum1 = (0..<9).map { (10 - $0) * numbers[$0] }.reduce(0, +)
+        let checkDigit1 = (sum1 * 10 % 11) % 10
+        
+        let sum2 = (0..<10).map { (11 - $0) * numbers[$0] }.reduce(0, +)
+        let checkDigit2 = (sum2 * 10 % 11) % 10
+        
+        return checkDigit1 == numbers[9] && checkDigit2 == numbers[10]
     }
     
     public func email(email: String) -> Bool {
