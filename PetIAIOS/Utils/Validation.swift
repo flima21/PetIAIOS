@@ -11,7 +11,7 @@ class Validation {
     
     init() { }
     
-    public func cpf(_ document: String) -> Bool {
+    public func cpf(document: String) -> Bool {
         let numbers = document.compactMap { Int(String($0)) }
         guard numbers.count == 11 else { return false }
         
@@ -29,7 +29,10 @@ class Validation {
     }
     
     public func password(password: String) -> Bool {
-        return true
+        let passwordRegex = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$&*]).{6,}$"
+        let passwordTest = NSPredicate(format: "SELF MATCHES %@", passwordRegex)
+        
+        return passwordTest.evaluate(with: password)
     }
     
     public func age(age: Date) -> Bool {
@@ -42,5 +45,9 @@ class Validation {
         // Verifica se a idade é maior ou igual a 18
         if let age = ageComponents.year { return age >= 18 }
         else { return false }
+    }
+    
+    public func zipcode(zipcode: String) -> Bool {
+        return true
     }
 }
