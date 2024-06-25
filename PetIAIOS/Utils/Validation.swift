@@ -48,6 +48,25 @@ class Validation {
     }
     
     public func zipcode(zipcode: String) -> Bool {
+        let zipcodeClean = Get().cleanString(word: zipcode)
+        
+        if zipcodeClean.count != 8 { return false }
+        
+        let zipcodeInvalid: [String] = [
+            "00000000",
+            "11111111",
+            "22222222",
+            "33333333",
+            "44444444",
+            "55555555",
+            "66666666",
+            "77777777",
+            "88888888",
+            "99999999"
+        ]
+        
+        if zipcodeInvalid.filter({$0 == zipcodeClean}).count > 0 { return false }
+        
         return true
     }
 }
