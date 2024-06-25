@@ -80,6 +80,13 @@ struct PetCadasterView: View {
             Section {
                 Text("Type some restrictios of your pet")
                 TextEditor(text: $restrictions).lineLimit(10)
+                
+                Button(action:{ }){
+                    HStack {
+                        Image(systemName: "figure")
+                        Text("Save")
+                    }.frame(maxWidth: .infinity)
+                }.buttonStyle(.borderedProminent)
             } header: {
                 Text("Restrictions").bold()
             }
