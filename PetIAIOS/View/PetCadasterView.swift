@@ -28,6 +28,7 @@ struct PetCadasterView: View {
     @State private var bloodType: String = ""
     @State private var animalType: String = "dog"
     @State private var birthdate: Date = Date()
+    @State private var deathDate: Date = Date()
     @State private var isAlive: Bool = true
     @State private var isSilvester: Bool = false
     @State private var weight: String = ""
@@ -60,10 +61,13 @@ struct PetCadasterView: View {
                 }
                 
                 Toggle(isOn: $isAlive) { Text("Alive") }
+                
+                if !isAlive { DatePicker("Death",selection: $deathDate, displayedComponents: [.date]) }
+                
                 Toggle(isOn: $isSilvester) { Text("Silvester") }
                 
-                TextField("Weight (Kg)", text: $weight)
-                TextField("Height (cm)", text: $height)
+                TextField("Weight (Kg)", text: $weight).disabled(!isAlive)
+                TextField("Height (cm)", text: $height).disabled(!isAlive)
                 
             } header: {
                 Text("SAVE YOUR PET").bold()
@@ -71,7 +75,7 @@ struct PetCadasterView: View {
 
             Section {
                 ForEach($typeVaccines) { $list in
-                    Toggle(list.name, isOn: $list.isSelected)
+                    Toggle(list.name, isOn: $list.isSelected).disabled(!isAlive)
                 }
             } header: {
                 Text("Vaccines").bold()
@@ -79,7 +83,7 @@ struct PetCadasterView: View {
             
             Section {
                 Text("Type some restrictios of your pet")
-                TextEditor(text: $restrictions).lineLimit(10)
+                TextEditor(text: $restrictions).lineLimit(10).disabled(!isAlive)
                 
                 Button(action:{ }){
                     HStack {
