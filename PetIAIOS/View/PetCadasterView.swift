@@ -41,7 +41,12 @@ struct PetCadasterView: View {
     var body: some View {
         Form {
             Section {
-                Button(action: { }){ Text("Photo") }.buttonStyle(.bordered).frame(maxWidth: .infinity).padding()
+                Button(action: { }){
+                    HStack {
+                        Image(systemName: "photo")
+                        Text("Photo")
+                    }
+                }.buttonStyle(.bordered).frame(maxWidth: .infinity).padding()
                 
                 TextField("Name", text: $name)
                 DatePicker("Birthdate",selection: $birthdate, displayedComponents: [.date])
@@ -87,7 +92,7 @@ struct PetCadasterView: View {
                 
                 Button(action:{ }){
                     HStack {
-                        Image(systemName: "figure")
+                        Image(systemName: "square.and.arrow.up")
                         Text("Save")
                     }.frame(maxWidth: .infinity)
                 }.buttonStyle(.borderedProminent)

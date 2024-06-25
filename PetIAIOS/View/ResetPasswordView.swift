@@ -36,7 +36,7 @@ struct ResetPasswordView: View {
                         
                     }) {
                         HStack {
-                            Image(systemName: "figure")
+                            Image(systemName: "square.and.arrow.up")
                             Text("Reset Password")
                         }.frame(maxWidth: .infinity)
                     }

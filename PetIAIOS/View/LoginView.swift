@@ -23,12 +23,14 @@ struct LoginView: View {
                     VStack{
                         TextField("E-mail", text: $email).textContentType(.emailAddress)
                         SecureField("Password", text: $password)
-                        
+                            
+                    
                         NavigationLink("Sign in", value: "teste").navigationDestination(
                             for: String.self
                         ) {
                             value in SignupView()
                         }.buttonStyle(.borderedProminent).disabled(!self.isValidForm()).frame(maxWidth: .infinity)
+                        
                     }.padding([.trailing, .top,.leading])
                         .textFieldStyle(.roundedBorder)
                     
@@ -49,7 +51,7 @@ struct LoginView: View {
                                 NavigationLink(destination: SignupView()) {
                                     VStack {
                                         HStack {
-                                            Image(systemName: "figure")
+                                            Image(systemName: "person.badge.key")
                                             Text("Sign up")
                                         }.frame(maxWidth: .infinity)
                                     }
@@ -62,7 +64,7 @@ struct LoginView: View {
                         NavigationLink(destination: ResetPasswordView()){
                             VStack {
                                 HStack {
-                                    Image(systemName: "figure.archery")
+                                    Image(systemName: "lock")
                                     Text("Reset Password")
                                 }.frame(maxWidth: .infinity)
                             }
