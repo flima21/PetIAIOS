@@ -6,15 +6,16 @@
 //
 
 import Foundation
-struct AnimalTypeStruc: Identifiable {
+struct AnimalTypeStruct: Identifiable {
     let id: String;
-    let description: String
+    let name: String
     
-    static func getAnimalType() -> [AnimalType] {
+    static func getAnimalType() -> [AnimalTypeStruct] {
         return [
-            AnimalType(id:"bird", description:"Bird"),
-            AnimalType(id:"dog", description:"Dog"),
-            AnimalType(id:"cat", description:"Cat")
+//            AnimalTypeStruct(id:"bird", name:"Bird"),
+            AnimalTypeStruct(id:"dog", name:"Dog"),
+            AnimalTypeStruct(id:"cat", name:"Cat"),
+            AnimalTypeStruct(id:"other", name:"Other")
         ]
     }
 }
