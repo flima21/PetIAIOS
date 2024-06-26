@@ -11,6 +11,8 @@ struct LoginView: View {
     @State private var email: String = ""
     @State private var password: String = ""
     @State private var showSignupScreen: Bool = true;
+    @State private var logged: Int = 0
+    @State private var screen: Int? = nil
     
     var body: some View {
         
@@ -24,13 +26,20 @@ struct LoginView: View {
                         TextField("E-mail", text: $email).textContentType(.emailAddress)
                         SecureField("Password", text: $password)
                             
-                    
-                        NavigationLink("Sign in", value: "teste").navigationDestination(
-                            for: String.self
-                        ) {
-                            value in SignupView()
-                        }.buttonStyle(.borderedProminent).disabled(!self.isValidForm()).frame(maxWidth: .infinity)
                         
+                        
+                        Button(action: {
+                            if (self.isValidForm()) { logged = 1; screen = 1}
+                        }){
+                            HStack {
+                                Image(systemName: "key")
+                                Text("Sign in")
+                            }.frame(maxWidth: .infinity)
+                        }
+                        .buttonStyle(.borderedProminent)
+                        .background(
+                            NavigationLink(destination: SettingsProfileView(), tag: logged, selection: $screen) { }
+                        )
                     }.padding([.trailing, .top,.leading])
                         .textFieldStyle(.roundedBorder)
                     
@@ -70,9 +79,9 @@ struct LoginView: View {
                             }
                         }.buttonStyle(.borderedProminent)
                     }.padding([.trailing, .leading])
-                }
+                }.tint(.green)
 //            }
-        }
+        }.navigationBarBackButtonHidden(true)
     }
     
     private func isValidForm() -> Bool {
