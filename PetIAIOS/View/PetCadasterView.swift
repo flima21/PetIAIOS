@@ -6,20 +6,7 @@
 //
 
 import SwiftUI
-
-struct Ocean: Identifiable, Hashable {
-    let name: String
-    let id = UUID()
-}
-
-
-private var oceans = [
-    Ocean(name: "Pacific"),
-    Ocean(name: "Atlantic"),
-    Ocean(name: "Indian"),
-    Ocean(name: "Southern"),
-    Ocean(name: "Arctic")
-]
+import PhotosUI
 
 struct PetCadasterView: View {
     @State private var name: String = ""
@@ -37,70 +24,72 @@ struct PetCadasterView: View {
     @State private var typesBlood: [BloodTypeStruct] = BloodTypeStruct.getAllBloodType()
     @State private var animalTypeStruct: [AnimalTypeStruct] = AnimalTypeStruct.getAnimalType()
     @State private var restrictions: String =  ""
+    @State private var selectedItem: PhotosPickerItem?
     
     var body: some View {
-        Form {
-            Section {
-                Button(action: { }){
-                    HStack {
+        NavigationStack {
+            Form {
+                Section {
+                    HStack{
                         Image(systemName: "photo")
-                        Text("Photo")
+                        PhotosPicker("Select your photo pet", selection: $selectedItem)
                     }
-                }.buttonStyle(.bordered).frame(maxWidth: .infinity).padding()
-                
-                TextField("Name", text: $name)
-                DatePicker("Birthdate",selection: $birthdate, displayedComponents: [.date])
-                
-                Picker("Color", selection: $color) { }
-                Picker("Paws", selection: $paws) { }
-                Picker("Blood Type", selection: $bloodType) { 
-                    ForEach(typesBlood) { type in
-                        Text(type.name).tag(type.id)
+                    
+                    TextField("Name", text: $name)
+                    DatePicker("Birthdate",selection: $birthdate, displayedComponents: [.date])
+                    
+                    Picker("Color", selection: $color) { }
+                    Picker("Paws", selection: $paws) { }
+                    Picker("Blood Type", selection: $bloodType) {
+                        ForEach(typesBlood) { type in
+                            Text(type.name).tag(type.id)
+                        }
                     }
+                    
+                    Picker("Animal Type", selection: $animalType) {
+                        ForEach(animalTypeStruct) { type in
+                            Text(type.name).tag(type.id)
+                        }
+                    }
+                    
+                    Toggle(isOn: $isAlive) { Text("Alive") }
+                    
+                    if !isAlive { DatePicker("Death",selection: $deathDate, displayedComponents: [.date]) }
+                    
+                    Toggle(isOn: $isSilvester) { Text("Silvester") }
+                    
+                    TextField("Weight (Kg)", text: $weight).disabled(!isAlive)
+                    TextField("Height (cm)", text: $height).disabled(!isAlive)
+                    
+                } header: {
+                    Text("SAVE YOUR PET").bold()
                 }
                 
-                Picker("Animal Type", selection: $animalType) {
-                    ForEach(animalTypeStruct) { type in
-                        Text(type.name).tag(type.id)
+                Section {
+                    ForEach($typeVaccines) { $list in
+                        Toggle(list.name, isOn: $list.isSelected).disabled(!isAlive)
                     }
+                } header: {
+                    Text("Vaccines").bold()
                 }
                 
-                Toggle(isOn: $isAlive) { Text("Alive") }
-                
-                if !isAlive { DatePicker("Death",selection: $deathDate, displayedComponents: [.date]) }
-                
-                Toggle(isOn: $isSilvester) { Text("Silvester") }
-                
-                TextField("Weight (Kg)", text: $weight).disabled(!isAlive)
-                TextField("Height (cm)", text: $height).disabled(!isAlive)
-                
-            } header: {
-                Text("SAVE YOUR PET").bold()
-            }
-
-            Section {
-                ForEach($typeVaccines) { $list in
-                    Toggle(list.name, isOn: $list.isSelected).disabled(!isAlive)
+                Section {
+                    Text("Type some restrictios of your pet")
+                    TextEditor(text: $restrictions).lineLimit(10).disabled(!isAlive)
+                    
+                    Button(action:{ }){
+                        HStack {
+                            Image(systemName: "square.and.arrow.up")
+                            Text("Save")
+                        }.frame(maxWidth: .infinity)
+                    }.buttonStyle(.borderedProminent)
+                } header: {
+                    Text("Restrictions").bold()
                 }
-            } header: {
-                Text("Vaccines").bold()
-            }
-            
-            Section {
-                Text("Type some restrictios of your pet")
-                TextEditor(text: $restrictions).lineLimit(10).disabled(!isAlive)
                 
-                Button(action:{ }){
-                    HStack {
-                        Image(systemName: "square.and.arrow.up")
-                        Text("Save")
-                    }.frame(maxWidth: .infinity)
-                }.buttonStyle(.borderedProminent)
-            } header: {
-                Text("Restrictions").bold()
+                
             }
-
-        }
+        }//.navigationBarBackButtonHidden(true)
     }
     
     func test() -> Bool {

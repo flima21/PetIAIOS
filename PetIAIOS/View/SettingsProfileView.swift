@@ -9,6 +9,9 @@ import SwiftUI
 
 struct SettingsProfileView: View {
     @State private var itemsMenu: [SettingsItems] = SettingsItems.getAllMenu()
+    @State private var logged: Int = 0
+    @State private var screen: Int? = nil
+    
     var body: some View {
         NavigationStack {
             VStack {
@@ -21,13 +24,24 @@ struct SettingsProfileView: View {
                             }
                         }
                     }
+                    
+                    Button(action: {
+                        if (true) { logged = 1; screen = 1}
+                    }){
+                        HStack {
+                            Image(systemName: "key")
+                            Text("Log out")
+                        }
+                    }
+                    .background(
+                        NavigationLink(destination: LoginView(), tag: logged, selection: $screen) { }
+                    )
+
                 }.navigationTitle("Settings")
+                
             }
-        }
-        
-        VStack {
-            Text("Development by").font(.footnote)
-        }
+            MainView()
+        }.navigationBarBackButtonHidden(true)
     }
 }
 

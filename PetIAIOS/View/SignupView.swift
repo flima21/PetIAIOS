@@ -35,12 +35,13 @@ struct SignupView: View {
     @State private var zipCodeApi: ZipcodeStruct?
     @State private var showLoading: Bool = true
     
+    @State private var logged: Int = 0
+    @State private var screen: Int? = nil
+
     var body: some View {
         VStack {
             Form {
                 Section {
-                    Text("Data Personal").bold().frame(alignment: .center).font(.title2)
-                    
                     TextField("Name",text:$name).textContentType(.name).onChange(of: name) {
                         newValue in name = newValue.uppercased()
                     }
@@ -87,10 +88,12 @@ struct SignupView: View {
                     Toggle(isOn: $isOnReceiveNotification) {
                         Text("Receive Notifications")
                     }
-                    Spacer()
                     
-                    Text("Address").bold().font(.title2)
-                    
+                } header: {
+                    Text("Data Personal").bold()
+                }
+                
+                Section {
                     TextField("Zipcode",text:$zipcode, onEditingChanged: { (editChanged) in
                         if !editChanged {
                             self.getApiZipCode(postcode: zipcode)
@@ -104,15 +107,23 @@ struct SignupView: View {
                     TextField("Neighborhood",text:$neighborhood)
                     TextField("Complement",text:$complement)
                     
-                    Button(action: { }) {
+                    Button(action: {
+                        if (self.isValidForm()) { logged = 1; screen = 1}
+                    }){
                         HStack {
-                            Image(systemName: "figure.archery")
-                            Text("Register")
+                            Image(systemName: "plus.app")
+                            Text("Sign in")
                         }.frame(maxWidth: .infinity)
-                    }.buttonStyle(.borderedProminent).frame(maxWidth: .infinity)
-                        .disabled(!isValidForm())
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .background(
+                        NavigationLink(destination: MainView(), tag: logged, selection: $screen) { }
+                    )
+                    
+                } header: {
+                    Text("Address").bold()
                 }
-            }.foregroundColor(.black).tint(.green)
+            }.tint(.green)
         }
     }
     
@@ -174,6 +185,10 @@ struct SignupView: View {
         let validation: Validation = Validation()
         
         ageValid = !validation.age(age: age)
+    }
+    
+    private func store() -> Void {
+        
     }
 }
 
